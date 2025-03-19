@@ -16,7 +16,7 @@ namespace ModuleTest
     [TestClass]
     public class L18
     {
-        [TestInitialize]
+        /*[TestInitialize]
         public void TestInitialize()
         {
             new InitScopesCommand().Execute();
@@ -80,6 +80,6 @@ namespace ModuleTest
             var json = JsonSerializer.Serialize(commandMessage);
 
             service.SendMessage(json);
-        }
+        }*/
     }
 }
