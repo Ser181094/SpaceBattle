@@ -63,6 +63,15 @@ namespace SpaceBattle.IoC
                 return new SetupPropertyCommand((ObjectImpl)args[0], (string)args[1], args[2]);
             });
 
+            //var eventLoop = new EventLoop.EventLoop();
+
+            var runner = new Runner();
+
+            dependencies.TryAdd("QueueCommand.Get", args =>
+            {
+                return runner.Queue;
+            });
+
             ScopeBaseDependencyStrategy.Root = scope;
 
             new SetCurrentScopeCommand(scope).Execute();
