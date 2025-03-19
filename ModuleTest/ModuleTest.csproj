@@ -18,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpaceBattle.GameAgent\SpaceBattle.GameAgent.csproj" />
+    <ProjectReference Include="..\SpaceBattle.GameServer\SpaceBattle.GameServer.csproj" />
     <ProjectReference Include="..\SpaceBattle\SpaceBattle.csproj" />
   </ItemGroup>
 
