@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SpaceBattle.Auth;
 
 namespace SpaceBattle.GameServer
 {
@@ -40,6 +41,9 @@ namespace SpaceBattle.GameServer
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
 
                 var message = JsonConvert.DeserializeObject<CommandMessage>(content);
+
+                var authenticationService = new AuthenticationService();
+                if (!authenticationService.ValidateToken(message.args[0].ToString())) return;
 
                 var currentQueue = IoC.IoC.Resolve<BlockingCollection<ICommand>>("QueueCommand.Get");
 
