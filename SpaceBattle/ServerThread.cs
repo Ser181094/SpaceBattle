@@ -1,11 +1,5 @@
 ﻿using SpaceBattle.Interfaces;
-using SpaceBattle.IoC;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceBattle
 {
@@ -16,17 +10,19 @@ namespace SpaceBattle
         private bool _stop = false;
         public Action _behaviour;
         public Action _actionAfterStop = () => { };
+        public CommandState commandState;
 
         public ServerThread(BlockingCollection<ICommand> q)
         {
             _q = q;
+            commandState = new CommandState();
 
             _behaviour = () =>
             {
                 var cmd = _q.Take();
                 try
                 {
-                    cmd.Execute();
+                    commandState.Execute(cmd);
                 }
                 catch (Exception e)
                 {
