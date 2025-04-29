@@ -14,6 +14,8 @@ namespace ModuleTest
         {
             new InitScopesCommand().Execute();
 
+            IoC.Resolve<ICommand>("Scopes.Current.Set", IoC.Resolve<object>("Scopes.New", IoC.Resolve<object>("Scopes.Root"))).Execute();
+
             var objectImpl = new ObjectImpl();
             objectImpl.SetProperty("id", 548);
             objectImpl.SetProperty("velocity", 0);
